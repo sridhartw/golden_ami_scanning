@@ -1,5 +1,5 @@
 data "template_file" "initiate_assessment" {
-  template = "${file("${path.module}/policy_templates/initiate_assessment.json.tpl")}"
+  template = "${file("${abspath(path.module)}/policy_templates/initiate_assessment.json.tpl")}"
   vars = {
     golden_ami_parameter = local.golden_ami_parameter
     account = data.aws_caller_identity.this.account_id
@@ -8,8 +8,8 @@ data "template_file" "initiate_assessment" {
 }
 
 data "archive_file" "initiate_assessment" {
-  source_file = "${path.module}/source_code/initiate_assessment.py"
-  output_path = "${path.root}/target/lambda/initiate_assessment.zip"
+  source_file = "${abspath(path.module)}/source_code/initiate_assessment.py"
+  output_path = "${abspath(path.root)}/target/lambda/initiate_assessment.zip"
   type = "zip"
 }
 

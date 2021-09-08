@@ -1,5 +1,5 @@
 data "template_file" "decommision_ami_version_doc" {
-  template = "${file("${path.module}/documents/decommision_ami_version.json.tpl")}"
+  template = "${file("${abspath(path.module)}/documents/decommision_ami_version.json.tpl")}"
   vars = {
     automation_service_role = aws_iam_role.automation_service.arn
     ami_config_bucket = var.ami_config_bucket
@@ -10,7 +10,7 @@ data "template_file" "decommision_ami_version_doc" {
 }
 
 data "template_file" "golden_ami_automation" {
-  template = "${file("${path.module}/documents/golden_ami_automation.json.tpl")}"
+  template = "${file("${abspath(path.module)}/documents/golden_ami_automation.json.tpl")}"
   vars = {
     automation_service_role = aws_iam_role.automation_service.arn
     resource-prefix = var.resource-prefix
@@ -28,7 +28,7 @@ data "template_file" "golden_ami_automation" {
 }
 
 data "template_file" "run_continuous_inspection" {
-  template = "${file("${path.module}/documents/run_continuous_inspection.json.tpl")}"
+  template = "${file("${abspath(path.module)}/documents/run_continuous_inspection.json.tpl")}"
   vars = {
     automation_service_role = aws_iam_role.automation_service.arn
     initiate_assessment_lambda = module.initiate_assessment.lambda_arn

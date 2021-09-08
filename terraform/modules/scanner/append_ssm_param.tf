@@ -1,13 +1,13 @@
 data "template_file" "append_ssm_param" {
-  template = "${file("${path.module}/policy_templates/append_ssm_param.json.tpl")}"
+  template = "${file("${abspath(path.module)}/policy_templates/append_ssm_param.json.tpl")}"
   vars = {
     golden_ami_parameter = local.golden_ami_parameter
   }
 }
 
 data "archive_file" "append_ssm_param" {
-  source_file = "${path.module}/source_code/append_ssm_param.py"
-  output_path = "${path.root}/target/lambda/append_ssm_param.zip"
+  source_file = "${abspath(path.module)}/source_code/append_ssm_param.py"
+  output_path = "${abspath(path.root)}/target/lambda/append_ssm_param.zip"
   type = "zip"
 }
 

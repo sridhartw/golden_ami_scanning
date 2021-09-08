@@ -1,5 +1,5 @@
 data "template_file" "decommission_ami_version" {
-  template = "${file("${path.module}/policy_templates/decommission_ami_version.json.tpl")}"
+  template = "${file("${abspath(path.module)}/policy_templates/decommission_ami_version.json.tpl")}"
   vars = {
     golden_ami_parameter = local.golden_ami_parameter
     ami_config_bucket = var.ami_config_bucket
@@ -7,8 +7,8 @@ data "template_file" "decommission_ami_version" {
 }
 
 data "archive_file" "decommission_ami_version" {
-  source_file = "${path.module}/source_code/decommission_ami_version.py"
-  output_path = "${path.root}/target/lambda/decommission_ami_version.zip"
+  source_file = "${abspath(path.module)}/source_code/decommission_ami_version.py"
+  output_path = "${abspath(path.root)}/target/lambda/decommission_ami_version.zip"
   type = "zip"
 }
 

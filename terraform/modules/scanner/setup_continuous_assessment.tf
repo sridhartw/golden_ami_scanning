@@ -1,5 +1,5 @@
 data "template_file" "setup_continuous_assessment" {
-  template = "${file("${path.module}/policy_templates/setup_continuous_assessment.json.tpl")}"
+  template = "${file("${abspath(path.module)}/policy_templates/setup_continuous_assessment.json.tpl")}"
   vars = {
     golden_ami_parameter = local.golden_ami_parameter
     managed_instance_iam_role = aws_iam_role.managed_instance.arn
@@ -10,8 +10,8 @@ data "template_file" "setup_continuous_assessment" {
 }
 
 data "archive_file" "setup_continuous_assessment" {
-  source_file = "${path.module}/source_code/setup_continuous_assessment.py"
-  output_path = "${path.root}/target/lambda/setup_continuous_assessment.zip"
+  source_file = "${abspath(path.module)}/source_code/setup_continuous_assessment.py"
+  output_path = "${abspath(path.root)}/target/lambda/setup_continuous_assessment.zip"
   type = "zip"
 }
 module "setup_continuous_assessment" {

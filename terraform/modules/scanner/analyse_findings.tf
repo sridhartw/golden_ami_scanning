@@ -1,17 +1,17 @@
 data "template_file" "analyse_findings" {
-  template = "${file("${path.module}/policy_templates/analyse_findings.json.tpl")}"
+  template = "${file("${abspath(path.module)}/policy_templates/analyse_findings.json.tpl")}"
   vars = {
     continuous_result_topic = aws_sns_topic.assessment_result.arn
   }
 }
 
 data "template_file" "assessment_complete" {
-  template = "${file("${path.module}/policy_templates/assessment_complete.json.tpl")}"
+  template = "${file("${abspath(path.module)}/policy_templates/assessment_complete.json.tpl")}"
 }
 
 data "archive_file" "analyse_findings" {
-  source_file = "${path.module}/source_code/analyse_findings.py"
-  output_path = "${path.root}/target/lambda/analyse_findings.zip"
+  source_file = "${abspath(path.module)}/source_code/analyse_findings.py"
+  output_path = "${abspath(path.root)}/target/lambda/analyse_findings.zip"
   type = "zip"
 }
 

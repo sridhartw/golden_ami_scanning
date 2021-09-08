@@ -17,7 +17,7 @@ resource "aws_iam_role" "automation_service" {
 }
 
 data "template_file" "automation_service" {
-  template = "${file("${path.module}/policy_templates/automation_service.json.tpl")}"
+  template = "${file("${abspath(path.module)}/policy_templates/automation_service.json.tpl")}"
   vars = {
     managed_instance_iam_role = aws_iam_role.managed_instance.arn
     run_inspector_arn = module.run_inspector.lambda_arn

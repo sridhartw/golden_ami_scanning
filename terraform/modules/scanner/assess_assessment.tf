@@ -1,17 +1,17 @@
 data "template_file" "assess_assessment" {
-  template = "${file("${path.module}/policy_templates/assess_assessment.json.tpl")}"
+  template = "${file("${abspath(path.module)}/policy_templates/assess_assessment.json.tpl")}"
   vars = {
     golden_ami_parameter = local.golden_ami_parameter
   }
 }
 
 data "template_file" "inspector_complete" {
-  template = "${file("${path.module}/policy_templates/inspector_complete.json.tpl")}"
+  template = "${file("${abspath(path.module)}/policy_templates/inspector_complete.json.tpl")}"
 }
 
 data "archive_file" "assess_assessment" {
-  source_file = "${path.module}/source_code/assess_assessment.py"
-  output_path = "${path.root}/target/lambda/assess_assessment.zip"
+  source_file = "${abspath(path.module)}/source_code/assess_assessment.py"
+  output_path = "${abspath(path.root)}/target/lambda/assess_assessment.zip"
   type = "zip"
 }
 

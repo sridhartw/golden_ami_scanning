@@ -1,13 +1,13 @@
 data "template_file" "run_inspector" {
-  template = "${file("${path.module}/policy_templates/run_inspector.json.tpl")}"
+  template = "${file("${abspath(path.module)}/policy_templates/run_inspector.json.tpl")}"
   vars = {
     golden_ami_parameter = local.golden_ami_parameter
   }
 }
 
 data "archive_file" "run_inspector" {
-  source_file = "${path.module}/source_code/run_inspector.py"
-  output_path = "${path.root}/target/lambda/run_inspector.zip"
+  source_file = "${abspath(path.module)}/source_code/run_inspector.py"
+  output_path = "${abspath(path.root)}/target/lambda/run_inspector.zip"
   type = "zip"
 }
 

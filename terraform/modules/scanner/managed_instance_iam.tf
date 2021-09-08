@@ -17,7 +17,7 @@ resource "aws_iam_role" "managed_instance" {
 }
 
 data "template_file" "managed_instance" {
-  template = "${file("${path.module}/policy_templates/managed_instance.json.tpl")}"
+  template = "${file("${abspath(path.module)}/policy_templates/managed_instance.json.tpl")}"
   vars = {
     ami_config_bucket = var.ami_config_bucket
   }
